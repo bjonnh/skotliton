@@ -3,7 +3,6 @@ plugins {
 //    kotlin("plugin.serialization")
     id("com.github.ben-manes.versions")
     id("maven-publish")
-    id("com.jfrog.bintray")
     id("com.github.johnrengelman.shadow")
     id("org.jetbrains.dokka")
     id("fr.coppernic.versioning")
@@ -70,10 +69,6 @@ tasks {
     dokkaHtml.configure {
         outputDirectory.set(buildDir.resolve("dokka"))
     }
-
-    withType<com.jfrog.bintray.gradle.tasks.BintrayUploadTask> {
-        dependsOn("build")
-    }
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
@@ -110,31 +105,6 @@ tasks.test {
     testLogging {
         events("passed", "skipped", "failed")
     }
-}
-
-/**
- * For publishing
- */
-
-bintray {
-    val bintrayRepo: String by project
-    val bintrayName: String by project
-    val bintrayVCSURL: String by project
-    val bintrayLicense: String by project
-
-    user = System.getenv("BINTRAY_USER") ?: System.getProperty("bintray.user")
-    key = System.getenv("BINTRAY_KEY") ?: System.getProperty("bintray.key")
-    dryRun = false
-    publish = true
-    setPublications(publicationName)
-    pkg(
-        delegateClosureOf<com.jfrog.bintray.gradle.BintrayExtension.PackageConfig> {
-            repo = bintrayRepo
-            name = bintrayName
-            setLicenses(*(bintrayLicense.split(",").toTypedArray()))
-            vcsUrl = bintrayVCSURL
-        }
-    )
 }
 
 // Quality

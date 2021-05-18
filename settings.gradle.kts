@@ -9,7 +9,6 @@ pluginManagement {
     plugins {
         val kotlinVersion: String by settings
         val versionsPluginVersion: String by settings
-        val bintrayPluginVersion: String by settings
         val shadowPluginVersion: String by settings
 
         val dokkaPluginVersion: String by settings
@@ -27,7 +26,6 @@ pluginManagement {
         kotlin("plugin.serialization") version kotlinVersion
 
         id("com.github.ben-manes.versions") version versionsPluginVersion
-        id("com.jfrog.bintray") version bintrayPluginVersion
         id("com.github.johnrengelman.shadow") version shadowPluginVersion
         id("org.jetbrains.dokka") version dokkaPluginVersion
         id("org.jetbrains.changelog") version changelogPluginVersion
