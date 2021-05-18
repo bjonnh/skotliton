@@ -10,11 +10,14 @@ plugins {
     id("io.gitlab.arturbosch.detekt")
     id("org.jlleitschuh.gradle.ktlint")
     id("org.jmailen.kotlinter")
+    id("org.jetbrains.changelog")
 }
+
+fun properties(key: String) = project.findProperty(key).toString()
 
 val publicationName: String by project
 group = "net.nprod"
-version = "0.0.1" + if (System.getProperty("snapshot")?.isEmpty() != false) {
+version = properties("version") + if (System.getProperty("snapshot")?.isEmpty() != false) {
     ""
 } else {
     "-SNAPSHOT"
@@ -154,4 +157,11 @@ detekt {
     config = rootProject.files("qc/detekt.yml")
     buildUponDefaultConfig = true
     baseline = rootProject.file("qc/detekt-baseline.xml")
+}
+
+// Documentation
+
+changelog {
+    version = properties("version")
+    groups = listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Security")
 }
