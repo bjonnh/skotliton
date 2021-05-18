@@ -4,6 +4,7 @@
 ### Added
 - Support for Changelog
 ### Changed
+- Updated all versions
 
 ### Deprecated
 

@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-//    kotlin("plugin.serialization")
+    // kotlin("plugin.serialization")
     id("com.github.ben-manes.versions")
     id("maven-publish")
     id("com.github.johnrengelman.shadow")
@@ -26,11 +26,11 @@ repositories {
     mavenCentral()
     jcenter()
     maven("https://kotlin.bintray.com/kotlinx")
-    maven("http://oss.jfrog.org/artifactory/oss-snapshot-local/")
+    maven("https://oss.jfrog.org/artifactory/oss-snapshot-local/")
 }
 
 dependencies {
-    //val serializationRuntimeVersion: String by project
+    // val serializationRuntimeVersion: String by project
     val kotlinLoggingVersion: String by project
     val junitApiVersion: String by project
     val slf4jVersion: String by project

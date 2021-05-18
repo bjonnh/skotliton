@@ -12,7 +12,7 @@ pluginManagement {
         val shadowPluginVersion: String by settings
 
         val dokkaPluginVersion: String by settings
-        val changelogPluginVersion : String by settings
+        val changelogPluginVersion: String by settings
 
         val versioningPluginVersion: String by settings
 
