@@ -13,10 +13,10 @@ plugins {
 }
 
 fun properties(key: String) = project.findProperty(key).toString()
-
+val projectVersion: String by project
 val publicationName: String by project
 group = "net.nprod"
-version = properties("version") + if (System.getProperty("snapshot")?.isEmpty() != false) {
+version = projectVersion + if (System.getProperty("snapshot")?.isEmpty() != false) {
     ""
 } else {
     "-SNAPSHOT"
@@ -24,7 +24,6 @@ version = properties("version") + if (System.getProperty("snapshot")?.isEmpty() 
 
 repositories {
     mavenCentral()
-    jcenter()
     maven("https://kotlin.bintray.com/kotlinx")
     maven("https://oss.jfrog.org/artifactory/oss-snapshot-local/")
 }
@@ -132,6 +131,6 @@ detekt {
 // Documentation
 
 changelog {
-    version = properties("version")
+    version = projectVersion
     groups = listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Security")
 }
